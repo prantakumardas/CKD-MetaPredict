@@ -32,8 +32,7 @@ This repository contains the **CKD MetaPredict web app**, a lightweight Flask ap
 ### Prerequisites
 - Python 3.12
 - Required packages:
-  ```bash
-  blinker==1.9.0
+blinker==1.9.0
 chartjs==1.2
 click==8.5.0
 Flask==3.1.2
@@ -54,7 +53,6 @@ tzdata==2026.3
 Werkzeug==3.1.8
 xgboost==3.4.1
 
-  ```
 ## 📊 Usage
 ### Clone the repository
 ```bash
