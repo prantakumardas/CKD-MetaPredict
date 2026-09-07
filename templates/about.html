@@ -1,0 +1,117 @@
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About MetaPredict</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1E3A8A;">
+      <div class="container-fluid">
+        <!-- Logo + Tagline -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <!-- Logo image -->
+          <img src="{{ url_for('static', filename='images/logo.png') }}" alt="CKD MetaPredict Logo" 
+              style="height:35px; margin-left:20px; ">
+        </a>
+
+        <!-- Mobile Toggle -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Nav Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('index') }}">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ url_for('about') }}">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  
+<!-- About Content -->
+<main class="container my-4">
+  <!-- Unified About Card -->
+  <section class="card p-4 mb-4">
+    <h2  class="main-header" style="text-align: center; color: #1E3A8A;" >About CKD MetaPredict</h2>
+
+    <h3 class="subheading" >Our Mission</h3>
+    <p class="text-justify">
+      CKD MetaPredict was created to revolutionize early detection of chronic kidney disease (CKD).
+      Our mission is to empower clinicians and researchers with predictive tools that improve patient
+      outcomes through timely intervention, prevention, and protection.
+    </p>
+
+    <h3 class="subheading">Research & Technology</h3>
+    <p class="text-justify">
+      At the heart of CKD MetaPredict lies a multilayer stacked machine learning model. This approach
+      combines diverse algorithms to achieve robust consensus, reducing bias and improving accuracy.
+      Our predictor integrates patient demographics and clinical features, producing interpretable
+      predictions with confidence scores that clinicians can trust.
+    </p>
+
+    <h3 class="subheading">Meet the Team</h3>
+    <p class="text-justify">
+      CKD MetaPredict is led by <strong><a style="text-decoration: none; color: inherit;" href="https://www.linkedin.com/in/prantakumardas/" target="_blank">Pranta Kumar Das</a></strong>, in partnership with the 
+      <em>Center for Artificial Intelligence and Robotics (CAIR)</em>. Our team brings together 
+      specialists in data science, artificial intelligence, and software engineering. 
+      Each member is driven by a shared vision: applying advanced machine learning to 
+      create reliable, interpretable tools that support early detection and better 
+      decision-making in healthcare. By combining technical innovation with a focus on 
+      usability, the team ensures CKD MetaPredict remains both scientifically rigorous 
+      and practically impactful.
+    </p>
+
+
+    <h3 class="subheading">Impact & Achievements</h3>
+    <p class="text-justify">
+      CKD MetaPredict has demonstrated significant improvements in prediction accuracy compared to
+      traditional models. By offering interpretable outputs, it bridges the gap between AI research
+      and clinical practice. Our tool has been tested on diverse datasets, achieving high sensitivity
+      and specificity in CKD risk prediction.
+    </p>
+
+    <h3 class="subheading">Future Roadmap</h3>
+    <p class="text-justify">
+      Looking ahead, we plan to expand CKD MetaPredict to include integration with electronic health
+      records, real-time monitoring dashboards, and mobile-friendly interfaces. We are also exploring
+      partnerships with hospitals and research institutions to validate the model in real-world settings.
+    </p>
+
+    <h3 class="subheading">Acknowledgments</h3>
+    <p class="text-justify">
+      We gratefully acknowledge the support of CAIR, our research collaborators, and the patients whose
+      anonymized data made this work possible. Their contributions drive our commitment to innovation
+      and patient-centered AI solutions.
+    </p>
+  </section>
+</main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 CKD Multilayer Stacked ML Model Predictor | Developed by 
+        <a href="https://www.linkedin.com/in/prantakumardas/" target="_blank">Pranta Kumar Das</a>
+      </p>
+    </div>
+  </footer>
+
+ <script src="{{ url_for('static', filename='script.js') }}"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

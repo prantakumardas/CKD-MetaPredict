@@ -1,0 +1,283 @@
+:root {
+  --bg: #f9fafb;          /* light background */
+  --card: #ffffff;        /* white cards */
+  --text: #1f2937;        /* dark gray text */
+  --muted: #6b7280;       /* medium gray for hints */
+  --primary: #2563eb;     /* blue accent */
+  --secondary: #10b981;   /* green accent */
+  --danger: #dc2626;      /* red for errors */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;              /* full viewport height */
+  display: flex;                  /* enable flexbox */
+  flex-direction: column;         /* stack content vertically */
+  background: url("/static/images/kidney-pattern.png") no-repeat center center fixed;
+  background-size: cover;         /* cover entire viewport */
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif;
+  color: var(--text);
+}
+
+/* Content expands to push footer down */
+main.container {
+  flex: 1;                        /* take remaining space */
+}
+
+
+.text-justify { text-align: justify; }
+
+.main-header {
+  font-family: 'Poppins', sans-serif; /* or any font you like */
+  font-size: 2rem;                    /* large size */
+  font-weight: 800;                   /* extra bold */
+  text-align: center;                 /* center alignment */
+  color: #1E3A8A;                     /* deep blue brand color */
+  margin: 1rem 0;
+}
+.subheading {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;          /* semi-bold for emphasis */
+  color: #555;               /* softer color than main header */
+  margin: 0.5rem 0 1rem;
+  font-size: 1.5rem;         /* default size for desktop */
+  line-height: 1.4;
+}
+
+
+/* Modern Header/Nav */
+.site-header {
+  background: var(--primary);
+  color: #fff;
+  padding: 0.1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.logo {
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+.nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+.nav a:hover {
+  color: var(--secondary);
+}
+
+/* Container & Cards */
+.container {
+  max-width: 1150px;
+  margin: 0 auto;
+  padding: .75rem;
+}
+.card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 0rem 3rem 2rem 3rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom: 1rem;
+}
+
+/* Patient Info Card */
+.patient-info {
+  border: 2px solid var(--secondary);
+}
+.patient-info h2 {
+  color: var(--primary);
+  margin-bottom: 0.75rem;
+}
+
+/* Grid Layout */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+@media (min-width: 640px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+  .grid { grid-template-columns: repeat(5, 1fr); }
+}
+
+/* Form Elements */
+.form-group label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 600;
+}
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: var(--text);
+}
+.form-group input::placeholder {
+  color: #9ca3af;
+}
+.form-group select option {
+  background: #ffffff;
+  color: var(--text);
+}
+.hint {
+  display: block;
+  margin-top: 0.35rem;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+/* Buttons */
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+.btn {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn-secondary {
+  background: var(--secondary);
+  color: #ffffff;
+}
+
+/* Results */
+#result { margin-top: 1rem; }
+.hidden { display: none; }
+#result-content {
+  display: grid;
+  gap: 0.5rem;
+}
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  background: #f3f4f6;
+  border-radius: 8px;
+}
+.result-row .label { color: var(--muted); }
+.result-row .value { font-weight: 700; }
+
+/* Footer */
+
+.site-footer {
+  background: #1f2937;
+  color: #f9fafb;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  padding-right: 1rem;
+  padding-left: 1rem; 
+  margin-top: 0.5rem;
+}
+.footer-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+}
+.footer-container a {
+  color: var(--secondary);
+  text-decoration: none;
+  font-weight: 600;
+}
+.footer-container a:hover {
+  text-decoration: underline;
+}
+
+/* Chart container for responsiveness */
+.chart-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  margin-bottom: 1.5rem;
+}
+canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Hide PDF report section on mobile devices */
+@media only screen and (max-width: 768px) {
+  #pdf-report {
+    display: none;
+  }
+}
+ 
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .chart-container { height: 300px; }
+  .logo { font-size: 1.25rem; }
+  .main-header { 
+    font-size: 1.5rem; 
+  }
+  .subheading {
+    font-size: 1.3rem;
+  }
+  
+}
+@media (max-width: 480px) {
+  .chart-container { height: 250px; }
+  .form-group label { font-size: 0.9rem; }
+  .btn { width: 100%; }
+  .main-header { 
+    font-size: 1.3rem; 
+    line-height: 1.2; /* tighter spacing for small screens */
+  }
+  
+  .subheading {
+    font-size: 1.2rem;
+    font-weight: 600;        /* slightly lighter for small screens */
+    line-height: 1.3;
+  }
+
+  .card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom: 1rem;
+  }
+}
+
+/* Print-friendly */
+@media print {
+  body {
+    background: #fff !important;
+    color: #000;
+  }
+  .site-header, .site-footer, .actions, .nav {
+    display: none !important;
+  }
+  .card {
+    box-shadow: none;
+    border: 1px solid #000;
+  }
+}

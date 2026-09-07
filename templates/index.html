@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MetaPredict</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1E3A8A;">
+      <div class="container-fluid">
+        <!-- Logo + Tagline -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+          <!-- Logo image -->
+          <img src="{{ url_for('static', filename='images/logo.png') }}" alt="CKD MetaPredict Logo" 
+              style="height:35px; margin-left:20px; ">
+        </a>
+
+        <!-- Mobile Toggle -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Nav Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('index') }}">Home</a>
+            </li>
+            <li class="nav-item">
+              <a id="nav-result-btn" class="nav-link" href="#result">Results</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('about') }}">About</a>
+            </li>
+          </ul>
+        </div>
+
+    </nav>
+  </header>
+
+
+  <main class="container">
+
+    <!-- Prediction Form -->
+    <form id="predict-form" class="card" method="POST" action="{{ url_for('predict_endpoint') }}">
+        <div>
+          <h2 class="main-header" style="text-align: center;">
+            Enter Patient Information & Clinical Features
+          </h2>
+        </div>
+      <div class="grid">
+        <!-- Patient Info -->
+        <!-- Name -->
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter patient name">
+          </div>
+
+          <!-- Age -->
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" id="age" name="age" placeholder="Enter age">
+          </div>
+
+          <!-- Blood Group -->
+          <div class="form-group">
+            <label for="blood_group">Blood Group</label>
+            <select id="blood_group" name="blood_group">
+              <option value="">Select</option>
+              <option value="A+">A+</option>
+              <option value="A-">A-</option>
+              <option value="B+">B+</option>
+              <option value="B-">B-</option>
+              <option value="O+">O+</option>
+              <option value="O-">O-</option>
+              <option value="AB+">AB+</option>
+              <option value="AB-">AB-</option>
+            </select>
+          </div>
+
+          <!-- Sex -->
+          <div class="form-group">
+            <label for="sex">Sex</label>
+            <select id="sex" name="sex">
+              <option value="">Select</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="weight">Weight (kg)</label>
+            <input type="number" id="weight" name="weight" placeholder="Enter weight in kg">
+          </div>
+        <!-- categorical features -->
+        <div class="form-group">
+          <label for="hypertension">Hypertension</label>
+          <select id="hypertension" name="hypertension">
+            <option value="">Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="diabetes_mellitus">Diabetes Mellitus</label>
+          <select id="diabetes_mellitus" name="diabetes_mellitus">
+            <option value="">Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="appetite">Appetite</label>
+          <select id="appetite" name="appetite">
+            <option value="">Select</option>
+            <option value="poor">Poor</option>
+            <option value="good">Good</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="red_blood_cells">Red Blood Cells</label>
+          <select id="red_blood_cells" name="red_blood_cells">
+            <option value="">Select</option>
+            <option value="abnormal">Abnormal</option>
+            <option value="normal">Normal</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="peda_edema">Pedal Edema</label>
+          <select id="peda_edema" name="peda_edema">
+            <option value="">Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="pus_cell">Pus Cell</label>
+          <select id="pus_cell" name="pus_cell">
+            <option value="">Select</option>
+            <option value="abnormal">Abnormal</option>
+            <option value="normal">Normal</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+        <label for="pus_cell_clumps">Pus Cell Clumps</label>
+        <select id="pus_cell_clumps" name="pus_cell_clumps">
+          <option value="">Select</option>
+          <option value="present">Present</option>
+          <option value="notpresent">Not Present</option>
+        </select>
+        </div>
+
+        <div class="form-group">
+        <label for="bacteria">Bacteria</label>
+        <select id="bacteria" name="bacteria">
+          <option value="">Select</option>
+          <option value="present">Present</option>
+          <option value="notpresent">Not Present</option>
+        </select>
+        </div>
+
+        <div class="form-group">
+        <label for="coronary_artery_disease">Coronary Artery Disease</label>
+        <select id="coronary_artery_disease" name="coronary_artery_disease">
+          <option value="">Select</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        </div>
+
+        <div class="form-group">
+        <label for="anemia">Anemia</label>
+        <select id="anemia" name="anemia">
+          <option value="">Select</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        </div>
+
+
+        <!-- numeric features -->
+        <div class="form-group"><label for="albumin">Albumin</label><input type="number" step="0.01" id="albumin" name="albumin"></div>
+        <div class="form-group"><label for="sodium ">Sodium</label><input type="number" step="0.01" id="sodium" name="sodium"></div>
+        <div class="form-group"><label for="blood_pressure">Blood Pressure</label><input type="number" step="0.01" id="blood_pressure" name="blood_pressure"></div>
+        <div class="form-group"><label for="hemoglobin">Hemoglobin</label><input type="number" step="0.01" id="hemoglobin" name="hemoglobin"></div>
+        <div class="form-group"><label for="blood_glucose_random">Blood Glucose Random</label><input type="number" step="0.01" id="blood_glucose_random" name="blood_glucose_random"></div>
+        <div class="form-group"><label for="serum_creatinine">Serum Creatinine</label><input type="number" step="0.01" id="serum_creatinine" name="serum_creatinine"></div>
+        <div class="form-group"><label for="specific_gravity">Specific Gravity</label><input type="number" step="0.01" id="specific_gravity" name="specific_gravity"></div>
+        <div class="form-group"><label for="packed_cell_volume">Packed Cell Volume</label><input type="number" step="0.01" id="packed_cell_volume" name="packed_cell_volume"></div>
+        <div class="form-group"><label for="red_blood_cell_count">Red Blood Cell Count</label><input type="number" step="0.01" id="red_blood_cell_count" name="red_blood_cell_count"></div>
+        <div class="form-group"><label for="sugar">Sugar</label><input type="number" step="0.01" id="sugar" name="sugar"></div>
+        <div class="form-group"><label for="blood_urea">Blood Urea</label><input type="number" step="0.01" id="blood_urea" name="blood_urea"></div>
+        <div class="form-group"><label for="potassium">Potassium</label><input type="number" step="0.01" id="potassium" name="potassium"></div>
+        <div class="form-group"><label for="white_blood_cell_count">White Blood Cell Count</label><input type="number" step="0.01" id="white_blood_cell_count" name="white_blood_cell_count"></div>
+        
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn">Predict</button>
+        <button type="reset" class="btn btn-secondary">Reset</button>
+        <button type="button" class="btn btn-secondary" onclick="loadPatientExample()">Load Example Patient Data</button>
+      </div>
+    </form>
+
+    <!-- Results Section -->
+    <section id="result" class="card {% if not result %}hidden{% endif %}">
+      <h2 class="main-header" style="text-align: center; color: #1E3A8A;">Chronic Kidney Disease Prediction Result</h2>
+      <div id="result-content">
+        <!-- Content from JS file -->
+      </div>
+      <br>
+      <p>Click here to download <a id="pdf-link" download="patient_report.pdf">PDF Report.</a></p>
+      <h2 class="main-header" style="text-align: center; color: #1E3A8A;">Stacked Model Confidence Breakdown</h2>
+      <h3 class="subheading">4. Level-0 Confidence</h3>
+      <div class="chart-container"><canvas id="level0Chart"></canvas></div>
+
+      <h3 class="subheading">5. Level-1 Confidence</h3>
+      <div class="chart-container"><canvas id="level1Chart"></canvas></div>
+
+      <h3 class="subheading">6. Level-2 Final Confidence</h3>
+      <div class="chart-container"><canvas id="level2Chart"></canvas></div>
+    </section>
+
+    <div id="pdf-report" class="card {% if not result %}hidden{% endif %}">
+      <h2 class="main-header" > Automated PDF Report</h2>
+      <p>Your report has been generated automatically. You can preview it below or download it.</p>
+      <iframe id="pdf-preview" width="100%" height="500px"></iframe>
+      <br>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <p>&copy; 2026 CKD ML Predictor | Responsive UI | Developed by <a href="https://www.linkedin.com/in/prantakumardas/" target="_blank">Pranta Kumar Das</a>
+      </p>
+    </div>
+  </footer>
+
+ <script src="{{ url_for('static', filename='script.js') }}"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+ <script>
+  function loadPatientExample() {
+    document.getElementById("name").value = "John Doe";
+    document.getElementById("age").value = "42";
+    document.getElementById("blood_group").value = "O+";
+    document.getElementById("sex").value = "male";
+    document.getElementById("weight").value = "72";    // kg
+
+    document.getElementById("hypertension").value = "yes";
+    document.getElementById("diabetes_mellitus").value = "no";
+    document.getElementById("appetite").value = "poor";
+    document.getElementById("red_blood_cells").value = "normal";
+    document.getElementById("peda_edema").value = "no";
+    document.getElementById("pus_cell").value = "abnormal";
+    document.getElementById("pus_cell_clumps").value = "notpresent";
+    document.getElementById("bacteria").value = "present";
+    document.getElementById("coronary_artery_disease").value = "no";
+    document.getElementById("bacteria").value = "present";
+    document.getElementById("anemia").value = "no";
+
+    document.getElementById("albumin").value = "4.0";
+    document.getElementById("sodium").value = "129.0";
+    document.getElementById("blood_pressure").value = "100";
+    document.getElementById("hemoglobin").value = "11.1";
+    document.getElementById("blood_glucose_random").value = "121.00";
+    document.getElementById("serum_creatinine").value = "1.4";
+    document.getElementById("specific_gravity").value = "1.01";
+    document.getElementById("packed_cell_volume").value = "39.00";
+    document.getElementById("red_blood_cell_count").value = "4.6";
+    document.getElementById("sugar").value = "0.00";
+    document.getElementById("blood_urea").value = "50.00";
+    document.getElementById("potassium").value = "4.0";
+    document.getElementById("white_blood_cell_count").value = "8300.0";
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const resultBtn = document.getElementById("nav-result-btn");
+    const resultSection = document.getElementById("result");
+    const predictSection = document.getElementById("patient-form"); // your predict form card
+
+    resultBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      if (resultSection.classList.contains("hidden")) {
+        // No results yet → go to predict section
+        predictSection.scrollIntoView({ behavior: "smooth" });
+      } else {
+        // Results exist → go to results section
+        resultSection.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
+
+ </script>
+</body>
+</html>
