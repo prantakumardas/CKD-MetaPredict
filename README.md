@@ -56,7 +56,7 @@ xgboost==3.4.1
 ## 📊 Usage
 ### Clone the repository
 ```bash
-git clone https://github.com/prantakumardas/CKD_MetaPredict_Webapp.git
+git clone https://github.com/prantakumardas/CKD-MetaPredict.git
 ```
 ### Run locally
 - Ensure you are inside the project folder.
